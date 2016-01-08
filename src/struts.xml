@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+    <struts>
+        <package name="struts2" extends="struts-default">
+         
+            <!-- 需要跳转到Service.zipAction处理zip文件 -->
+            <action name="uploadFile" class="Session.uploadFile">
+              <result name="success" type="chain">
+               <param name="namespace">/Service</param>  
+               <param name="actionName">zipAction</param>
+               <param name="zipPath">${zipPath}</param>
+              </result>
+              <result name="input">/viewBook.jsp</result>               
+            </action>
+            
+            <action name="zipAction" class="Service.zipAction">
+             <result name="success" type="chain">
+             <param name="namespace">/DAO</param> 
+             <param name="actionName">storeDataAction</param>
+             <param name="zipPath">${zipPath}</param>
+             </result>       
+            </action> 
+            
+             <action name="storeDataAction" class="DAO.storeDataAction">
+             <result name="success" type="redirectAction">
+               <param name="namespace">/Session</param> 
+               <param name="actionName">BookList</param>            
+             </result>  
+             </action> 
+             		
+			<action name="BookList" class="Session.BookList">
+			<result name="success" >/viewBook.jsp</result>
+			</action> 
+			
+			<action name="QueryBook" class="DAO.QueryBook">
+			  <result name="success" >/bookContent.jsp</result>		
+			</action>               
+        </package>
+     <constant name="struts.multipart.maxSize" value="100000000"/> 
+     <constant name="struts.multipart.saveDir" value="/tmp"/>
+     <constant name="struts.action.extension" value=","></constant>
+    </struts>

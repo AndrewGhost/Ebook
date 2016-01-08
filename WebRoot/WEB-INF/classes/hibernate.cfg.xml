@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory name="foo">
+	    <!-- 数据库连接设置 -->
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="connection.url">
+            jdbc:mysql://localhost:3306/Ebook
+        </property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        
+        <!-- SQL方言 -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+         <!--实际操作数据库时是否显示SQL -->
+		<property name="show_sql">false</property>
+		<!--将数据库schema的DDL导出到数据库 -->
+         <property name="hibernate.hbm2ddl.auto">create</property>
+		<!-- 以下设置对象与数据库表的映像文件 -->
+		 <mapping resource="DAO/Book.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

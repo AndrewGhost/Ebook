@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="DAO">
+    <class name="Book" table="Book">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="native"/>
+        </id>
+        <property name="bookname" column="bookname" type="java.lang.String"/>
+        <property name="author" column="author"  type="java.lang.String"/>
+        <property name="chapterPath" column="chapterPath" type="java.lang.String"/>
+        <property name="bookFile" column="bookFile" type="java.lang.String"/>
+      
+    </class>
+</hibernate-mapping>
